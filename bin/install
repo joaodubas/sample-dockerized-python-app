@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+repo_tag=""
+
+function tag() {
+	repo_tag=$(cat $1/REPOSITORY):$(cat $1/TAG)
+}
+
+function install() {
+	tag $1
+	cd $1 \
+		&& docker build --rm --tag ${repo_tag} .
+}
+
+install $1
