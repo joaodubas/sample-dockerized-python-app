@@ -15,4 +15,29 @@ def not_found(error):
 
 @app.route('todo/v1/tasks', methods=('GET',))
 def tasks():
-    return jsonify({'tasks': None})
+    tasks = Todo.select()
+    return jsonify({'tasks': tasks})
+
+
+@app.route('todo/v1/tasks/<int:pk>', methods=('GET',))
+def task(pk):
+    task = Todo.select().where(id=pk)
+    return jsonify({'task': task})
+
+
+@app.route('todo/v1/tasks', methods=('POST',))
+def create():
+    task = Todo.insert()
+    return jsonify({'task': task}), 201
+
+
+@app.route('todo/v1/tasks/<int:pk>', methods=('PUT',))
+def update(pk):
+    task = Todo.update().where(id=pk)
+    return jsonify({'task': task})
+
+
+@app.route('todo/v1/tasks/<int:pk>', methods=('DELETE',))
+def delete(pk):
+    task = Todo.delete().where(id=pk)
+    return jsonify({'task': None})
