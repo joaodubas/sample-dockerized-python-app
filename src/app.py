@@ -8,5 +8,6 @@ db = Database(app)
 
 
 def create_tables():
+    """create_tables -- Invoke the `create_table` method on all models."""
     from .models import Todo
     Todo.create_table()

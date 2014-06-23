@@ -11,6 +11,6 @@ install-dev: install-base
 	@./bin/install $(DEV_PATH)
 
 bash:
-	@docker run -i -t --rm $(DOCKER_TAG) /bin/bash
+	@docker run -i -t --rm --entrypoint /bin/bash $(image) -v
 
 .PONY: bash
